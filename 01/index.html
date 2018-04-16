@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Y-Vue</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="mt-3">
+                <div class="page-header">Vue 实例</div>
+                <hr>
+                <div id="sum">
+                    <div class="form-row">
+                        <div class="col">
+                            <input type="text" class="form-control" v-model.number="num">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" v-model.number="num2">
+                        </div>
+                    </div>
+                    <hr>
+                    <p class="p-2 bg-secondary">合计：{{ num + num2 }} 元</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // viewModel
+    var vm = new Vue({
+        el: '#sum',
+        data: {
+            num: 0,
+            num2: 0
+        }
+    });
+</script>
+</body>
+</html>

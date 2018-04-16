@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue - 生命周期</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<div class="container">
+    <div id="app" class="jumbotron mt-3">
+        <h1 class="display-3">{{msg}}</h1>
+
+    </div>
+    <button type="button" onclick="updateVm()" class="btn btn-sm btn-secondary mr-2">update</button>
+    <button type="button" onclick="destroyVm()" class="btn btn-sm btn-danger mr-2">destroy</button>
+    <button type="button" class="btn btn-sm btn-primary" id="btn">jquery</button>
+</div>
+<script>
+    let vm = new Vue({
+        el : '#app',
+        data : {
+            msg : 'Hello, Vue!'
+        },
+        beforeCreate() {
+            console.log('实例创建前');
+        },
+        created() {
+            console.log('实例已创建');
+        },
+        beforeMount() {
+            console.log('实例挂载前');
+        },
+        mounted() {
+            $('#btn').click(function() {
+                alert('I\'m Jquery');
+            });
+            console.log('实例已挂载');
+            // alert('挂载完毕');
+
+        },
+        beforeUpdate() {
+            console.log('实例修改前');
+        },
+        updated() {
+            console.log('实例已修改');
+        },
+        beforeDestroy() {
+            console.log('实例销毁前');
+        },
+        destroyed() {
+            console.log('实例已销毁');
+        }
+    });
+
+    function updateVm() {
+        vm.msg = 'Hello, Bootstrap!';
+    }
+
+    function destroyVm() {
+        vm.$destroy();
+    }
+</script>
+</body>
+</html>
