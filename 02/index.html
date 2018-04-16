@@ -13,19 +13,25 @@
 </head>
 <body>
 <div class="container">
-    <div id="app" class="jumbotron mt-3">
-        <h1 class="display-3">{{msg}}</h1>
-
+    <div id="app" class="my-5">
+        <div class="page-header">
+            <img class="img-fluid" style="width: 1rem;" src="https://cn.vuejs.org/images/logo.png" alt="vue"> Vue - 生命周期
+        </div>
+        <hr>
+        <div class="jumbotron">
+            <h1 class="display-3">{{msg}}</h1>
+            <p class="lead">Please checkout the console, and understand the vue's lifecycle.</p>
+        </div>
+        <button type="button" onclick="updateVm()" class="btn btn-sm btn-secondary mr-2">update</button>
+        <button type="button" onclick="destroyVm()" class="btn btn-sm btn-danger mr-2">destroy</button>
+        <button type="button" class="btn btn-sm btn-primary" id="btn">jquery</button>
     </div>
-    <button type="button" onclick="updateVm()" class="btn btn-sm btn-secondary mr-2">update</button>
-    <button type="button" onclick="destroyVm()" class="btn btn-sm btn-danger mr-2">destroy</button>
-    <button type="button" class="btn btn-sm btn-primary" id="btn">jquery</button>
 </div>
 <script>
     let vm = new Vue({
-        el : '#app',
-        data : {
-            msg : 'Hello, Vue!'
+        el: '#app',
+        data: {
+            msg: 'Hello, Vue!'
         },
         beforeCreate() {
             console.log('实例创建前');
@@ -37,7 +43,7 @@
             console.log('实例挂载前');
         },
         mounted() {
-            $('#btn').click(function() {
+            $('#btn').click(function () {
                 alert('I\'m Jquery');
             });
             console.log('实例已挂载');
