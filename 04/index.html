@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue - 标签属性</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        [v-cloak] {
+            /*display: none;*/
+        }
+    </style>
+</head>
+<body>
+<!--v-cloak 不看到双标签-->
+<div class="container" v-cloak>
+    <div id="app" class="my-5">
+        <div class="page-header">
+            <img class="img-fluid" style="width: 1rem;" src="https://cn.vuejs.org/images/logo.png" alt="vue"> Vue - 标签属性
+        </div>
+        <hr>
+        <div class="jumbotron">
+            <!--v-bind 绑定标签属性的值-->
+            <!--可以通过绑定 class 来绑定样式 --- :class -->
+            <!--也可以直接绑定样式 --- :style -->
+            <h1 :class="'display-2'" v-bind:title="'原本的 title'">{{msg}}</h1>
+            <h1 :class="[st1, st2]" v-bind:title="title">{{msg}}</h1>
+            <h1 class="display-4" :style="st3">{{msg}}</h1>
+        </div>
+        <div class="py-2 px-3 bg-light border border-info rounded">
+            <div class="form-check text-info" v-for="fruit,key in fruits">
+                <input type="radio" name="fruit" class="form-check-input" v-bind:value="fruit" v-bind:id="fruit + key">
+                <label v-bind:for="fruit + key" class="form-check-label">{{fruit}}</label>
+            </div>
+        </div>
+        <small class="text-muted d-block mb-3">Please select your favirator fruit.</small>
+
+        <!--直接用 ":" 就可以代替 "v-bind:"-->
+        <div class="py-2 px-3 bg-light border border-info rounded">
+            <div class="form-check text-info" v-for="fruit,key in fruits">
+                <input type="radio" name="fruit2" class="form-check-input" :value="fruit" :id="fruit + key + 2">
+                <label :for="fruit + key + 2" class="form-check-label">{{fruit}}</label>
+            </div>
+        </div>
+        <small class="text-muted d-block mb-3">Please select your favirator fruit.</small>
+    </div>
+</div>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            msg: 'This is a title.',
+            title: 'Vue 绑定 title',
+            fruits: ['apple', 'banana', 'peach', 'orange', 'watermelon'],
+            cfruits: ['苹果', '香蕉', '桃子', '橘子', '西瓜'],
+            st1: 'display-3',
+            st2: 'text-primary',
+            st3: 'color:#6cf;'
+        }
+    });
+</script>
+</body>
+</html>
