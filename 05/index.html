@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue - 事件</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.19.0/dist/sweetalert2.all.min.js"></script>
+    <style>
+        [v-cloak] {
+            /*display: none;*/
+        }
+    </style>
+</head>
+<body>
+<!--v-cloak 不看到双标签-->
+<div class="container" v-cloak>
+    <div id="app" class="my-5">
+        <div class="page-header">
+            <img class="img-fluid" style="width: 1rem;" src="https://cn.vuejs.org/images/logo.png" alt="vue"> Vue - 事件
+        </div>
+        <hr>
+        <input type="text" class="form-control" v-on:keyup.delete="actionDelete">
+        <small class="text-muted">enter something and delete it.</small>
+    </div>
+</div>
+<script>
+    let vm = new Vue({
+        el : '#app',
+        methods : {
+            actionDelete() {
+                swal('删除');
+            }
+        }
+    });
+</script>
+</body>
+</html>
