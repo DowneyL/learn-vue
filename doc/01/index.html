@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue - 介绍</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.19.0/dist/sweetalert2.all.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div id="app" class="my-5">
+        <div class="page-block">
+            <img class="img-fluid" style="width: 1rem;" src="https://cn.vuejs.org/images/logo.png" alt="vue"> Vue - 声明式渲染
+        </div>
+        <hr>
+        <!--Vue.js 的核心是一个允许采用简洁的模板语法来声明式地将数据渲染进 DOM 系统-->
+        <div class="jumbotron">
+            <h1 class="display-3">{{message}}</h1>
+            <!--除了文本插值，我们还可以绑定元素特性-->
+            <!--v-bind 称为指令-->
+            <!--下例中的作用在于绑定元素的 title 属性-->
+            <h1 class="display-2" v-bind:title="title">{{message}}</h1>
+        </div>
+        <!--所有东西都是响应式的！-->
+
+        <div class="page-block">
+            <img class="img-fluid" style="width: 1rem;" src="https://cn.vuejs.org/images/logo.png" alt="vue"> Vue - 条件判断
+        </div>
+        <hr>
+        <!--条件控制-->
+        <!--v-if 在谁身上就判断他本身-->
+        <!--说明我们不仅能把数据绑定到 DOM 文本或特性，还可以绑定到 DOM 结构上-->
+        <div class="jumbotron" v-if="flag">
+            <h1 class="display-3">You are good.</h1>
+        </div>
+        <button class="btn btn-primary mb-4" @click="flag = !flag">toggle</button>
+
+        <div class="page-block">
+            <img class="img-fluid" style="width: 1rem;" src="https://cn.vuejs.org/images/logo.png" alt="vue"> Vue - 循环控制
+        </div>
+        <hr>
+        <ul class="list-group mb-4">
+            <li class="list-group-item" v-for="js in frontend ">{{js}}</li>
+        </ul>
+        <div class="list-group mb-4">
+            <a href="javacript:" class="list-group-item" v-for="style in list_style" v-bind:class="string + style.color">{{style.color}}</a>
+        </div>
+
+        <div class="page-block">
+            <img class="img-fluid" style="width: 1rem;" src="https://cn.vuejs.org/images/logo.png" alt="vue"> Vue - 处理用户输入
+        </div>
+        <hr>
+        <!--v-on 指令添加一个事件监听器，通过它调用在 Vue 实例中定义的方法-->
+        <div class="jumbotron">
+            <h1 class="display-3">{{message}}</h1>
+            <input type="text" class="form-control my-3" v-model="message">
+            <button class="btn btn-primary" @click="reserveMessage">reverse</button>
+        </div>
+    </div>
+    <div id="app2" class="my-5">
+        <div class="page-block">
+            <img class="img-fluid" style="width: 1rem;" src="https://cn.vuejs.org/images/logo.png" alt="vue"> Vue - 组件化应用构建
+        </div>
+        <hr>
+        <ul class="list-group">
+            <list-item v-for="style in list_style" v-bind:todo="style"></list-item>
+        </ul>
+    </div>
+</div>
+<script>
+    var app = new Vue({
+        el : '#app',
+        data : {
+            flag : false,
+            title : 'Loading at ' + new Date(),
+            message : 'Hello, Vue!',
+            frontend : ['Vue.js', 'React.js', 'Angular.js'],  // 数组
+            string : 'list-group-item-',
+            list_style : [ // 数组元素是对象
+                { color : 'primary' },
+                { color : 'success' },
+                { color : 'secondary' },
+                { color : 'danger' },
+                { color : 'warning' },
+                { color : 'info' },
+                { color : 'light' },
+                { color : 'dark' }
+            ]
+        },
+        methods : {
+            reserveMessage : function () {
+                this.message = this.message.split('').reverse().join('');
+            }
+        }
+    });
+
+    Vue.component('list-item', {
+       props : ['todo'],
+       template : '<li class="list-group-item list-group-item-">{{todo.color}}</li>'
+    });
+    var app2 = new Vue({
+       el : '#app2',
+       data : {
+           list_style : [ // 数组元素是对象
+               { color : 'primary' },
+               { color : 'success' },
+               { color : 'secondary' },
+               { color : 'danger' },
+               { color : 'warning' },
+               { color : 'info' },
+               { color : 'light' },
+               { color : 'dark' }
+           ]
+       }
+    });
+</script>
+</body>
+</html>

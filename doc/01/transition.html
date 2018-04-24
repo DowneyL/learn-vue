@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue - 进入/离开 & 列表过渡</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.19.0/dist/sweetalert2.all.min.js"></script>
+    <style>
+        .faded-enter-active, .faded-leave-active {
+            transition: opacity .5s;
+        }
+
+        .faded-enter, .faded-leave-to {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id="app" class="my-5">
+        <div class="page-header">
+            <img class="img-fluid" style="width: 1rem;" src="https://cn.vuejs.org/images/logo.png" alt="vue"> Vue -
+            进入/离开 & 列表过渡
+        </div>
+        <hr>
+        <img src="https://cn.vuejs.org/images/transition.png" alt="Vue transition" class="img-fluid">
+        <transition name="faded">
+            <div class="jumbotron" v-if="show">
+                <p><span class="text-danger">v-enter</span>：定义 <b>进入过渡</b> 的开始状态。.faded-enter</p>
+                <p><span class="text-danger">v-enter-active</span>：定义 <b>进入过渡</b> 的状态。.faded-enter-active</p>
+                <p><span class="text-danger">v-enter-to</span>：定义 <b>进入过渡</b> 的结束状态。.faded-enter-to <b>2.1.8 版以上</b></p>
+                <br>
+                <p><span class="text-success">v-leave</span>：定义 <b>离开过渡</b> 的开始状态。.faded-leave</p>
+                <p><span class="text-success">v-leave-active</span>：定义 <b>离开过渡</b> 的状态。.faded-leave-active</p>
+                <p><span class="text-success">v-leave-to</span>：定义 <b>离开过渡</b> 的结束状态。.faded-leave-to <b>2.1.8 版以上</b></p>
+
+                <small class="text-muted">标注：<i>由于 transition 标签的 name 为 faded ，所以过渡动画的 class 属性名，由 faded 以及 v-enter
+                    等组合而来</i></small>
+            </div>
+        </transition>
+        <button class="btn btn-info" v-on:click="show = !show">toggle</button>
+    </div>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            show: true
+        }
+    });
+</script>
+</body>
+</html>
